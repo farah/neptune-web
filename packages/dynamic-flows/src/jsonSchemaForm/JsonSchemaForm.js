@@ -1,12 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Types from 'prop-types';
+import { useTranslation } from 'react-i18next';
 import GenericSchema from './genericSchema';
 import { isValidSchema } from '../common/validation/schema-validators';
 
 const JsonSchemaForm = (props) => {
+  const { i18n } = useTranslation();
+
+  useEffect(() => {
+    if (i18n.language !== props.locale) {
+      i18n.changeLanguage(props.locale);
+    }
+  }, [props.locale, i18n]);
+
   const onChange = (model, schema) => {
     props.onChange(model, isValidSchema(model, props.schema), schema);
   };
+
   return <GenericSchema {...props} onChange={onChange} />;
 };
 
