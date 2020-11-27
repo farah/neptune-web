@@ -5,6 +5,16 @@ import { InlineAlert, Checkbox, Radio, Select } from '@transferwise/components';
 
 import JsonSchemaForm from '.';
 
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    i18n: {
+      language: 'en',
+      changeLanguage: () => {},
+    },
+    t: (s) => s,
+  }),
+}));
+
 describe('E2E: Given a component for rendering a JSON schema form', () => {
   let component;
   let schema;

@@ -11,6 +11,16 @@ const wait = (t) => {
   });
 };
 
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    i18n: {
+      language: 'en',
+      changeLanguage: () => {},
+    },
+    t: (s) => s,
+  }),
+}));
+
 describe('Given a component for rendering persist async schemas', () => {
   let onChange;
   let onPersistAsync;
@@ -205,9 +215,7 @@ describe('Given a component for rendering persist async schemas', () => {
           it('should render fallback error message', async () => {
             enterValueAndBlur('500--no-body');
             await wait(1);
-            expect(getComponentErrorsProp()).toEqual(
-              'Something went wrong, please try again later!',
-            );
+            expect(getComponentErrorsProp()).toEqual('persistAsyncError');
           });
         });
 
@@ -215,9 +223,7 @@ describe('Given a component for rendering persist async schemas', () => {
           it('should render fallback error message', async () => {
             enterValueAndBlur('499--json-body');
             await wait(1);
-            expect(getComponentErrorsProp()).toEqual(
-              'Something went wrong, please try again later!',
-            );
+            expect(getComponentErrorsProp()).toEqual('persistAsyncError');
           });
         });
 
@@ -225,9 +231,7 @@ describe('Given a component for rendering persist async schemas', () => {
           it('should render fallback error message', async () => {
             enterValueAndBlur('499--no-body');
             await wait(1);
-            expect(getComponentErrorsProp()).toEqual(
-              'Something went wrong, please try again later!',
-            );
+            expect(getComponentErrorsProp()).toEqual('persistAsyncError');
           });
         });
 

@@ -5,6 +5,16 @@ import JsonSchemaForm from '.';
 
 import GenericSchema from './genericSchema';
 
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    i18n: {
+      language: 'en',
+      changeLanguage: () => {},
+    },
+    t: (s) => s,
+  }),
+}));
+
 describe('Given a component for rendering a JSON schema form', () => {
   let component;
   let genericSchema;
