@@ -4,10 +4,10 @@ import { initReactI18next } from 'react-i18next';
 
 const resources = {
   en: {
-    translation: require('./i18n/en/messages.json'),
+    translation: require('./i18n/messages_en.json'),
   },
   jp: {
-    translation: require('./i18n/jp/messages.json'),
+    translation: require('./i18n/messages_jp.json'),
   },
 };
 
