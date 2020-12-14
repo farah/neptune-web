@@ -1,10 +1,8 @@
-//
-// Buttons
-// --------------------------------------------------
+@import (reference) '../../variables/neptune-tokens.less';
+@import (reference) '../../variables/legacy-variables.less';
 
-
-// Base styles
-// --------------------------------------------------
+@import '../mixins/_buttons.less';
+@import (reference) 'bootstrap/less/mixins/tab-focus.less';
 
 .btn {
   display: inline-block;
@@ -24,7 +22,7 @@
     @border-radius-base;
     @btn-height
   );
-  .user-select(none);
+  user-select: none;
 
   &:active,
   &.active,
@@ -47,7 +45,7 @@
     cursor: @cursor-disabled;
     outline: none;
     //.opacity(.65);
-    .box-shadow(none);
+    box-shadow: none;
   }
 
   a& {
@@ -62,6 +60,76 @@
 // Alternate buttons
 // --------------------------------------------------
 
+
+
+.btn-accent {
+  .button-variant(
+      @color-text-control;
+      @color-text-control;
+      @color-control-accent;
+      @color-control-accent-hover;
+      @color-control-accent-active;
+      @color-control-accent;
+      @color-control-accent-hover;
+      @color-control-accent-active;
+  );
+}
+
+.btn-positive {
+  .button-variant(
+      @color-text-control;
+      @color-text-control;
+      @color-control-positive;
+      @color-control-positive-hover;
+      @color-control-positive-active;
+      @color-control-positive;
+      @color-control-positive-hover;
+      @color-control-positive-active;
+  );
+}
+
+.btn-negative {
+  .button-variant(
+      @color-text-control;
+      @color-text-control;
+      @color-control-negative;
+      @color-control-negative-hover;
+      @color-control-negative-active;
+      @color-control-negative;
+      @color-control-negative-hover;
+      @color-control-negative-active;
+  );
+}
+
+// @DEPRECATED
+.btn-primary {
+  .button-variant(
+      @btn-primary-color;
+      #FFF;
+      @btn-primary-bg;
+      @btn-primary-bg-hover;
+      @btn-primary-bg-active;
+      @btn-primary-border;
+      @btn-primary-border-hover;
+      @btn-primary-border-active
+  );
+}
+
+// @DEPRECATED
+.btn-success {
+  .button-variant(
+      @btn-success-color;
+      #FFF;
+      @btn-success-bg;
+      @btn-success-bg-hover;
+      @btn-success-bg-active;
+      @btn-success-border;
+      @btn-success-border-hover;
+      @btn-success-border-active
+  );
+}
+
+// @DEPRECATED
 .btn-default {
   .button-variant(
       @btn-default-color;
@@ -75,32 +143,8 @@
       #FFF
   );
 }
-.btn-primary {
-  .button-variant(
-      @btn-primary-color;
-      #FFF;
-      @btn-primary-bg;
-      @btn-primary-bg-hover;
-      @btn-primary-bg-active;
-      @btn-primary-border;
-      @btn-primary-border-hover;
-      @btn-primary-border-active
-  );
-}
-// Success appears as green
-.btn-success {
-  .button-variant(
-      @btn-success-color;
-      #FFF;
-      @btn-success-bg;
-      @btn-success-bg-hover;
-      @btn-success-bg-active;
-      @btn-success-border;
-      @btn-success-border-hover;
-      @btn-success-border-active
-  );
-}
-// Info appears as blue-green
+
+// @DEPRECATED
 .btn-info {
   .button-variant(
       @btn-info-color;
@@ -114,7 +158,8 @@
       #FFF
   );
 }
-// Warning appears as orange
+
+// @DEPRECATED
 .btn-warning {
   .button-variant(
       @btn-warning-color;
@@ -128,7 +173,8 @@
       #FFF
   );
 }
-// Danger and error appear as red
+
+// @DEPRECATED
 .btn-danger {
   .button-variant(
       @btn-danger-color;
