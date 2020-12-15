@@ -6,38 +6,77 @@ import { logActionRequiredIf } from '../utilities';
 
 import './Button.css';
 
-import { Size, Type } from '../common';
+import { Size, ControlType, Priority, Type } from '../common';
 
-const Button = ({
-  className,
-  block,
-  children,
-  disabled,
-  htmlType,
-  loading,
-  size,
-  type,
-  ...rest
-}) => {
+const deprecatedTypeMap = {
+  [Type.PRIMARY]: ControlType.ACCENT,
+  [Type.SECONDARY]: ControlType.ACCENT,
+  [Type.LINK]: ControlType.ACCENT,
+  [Type.PAY]: ControlType.POSITIVE,
+  [Type.DANGER]: ControlType.NEGATIVE,
+};
+
+const typeClassMap = {
+  [ControlType.ACCENT]: 'btn-primary',
+  [ControlType.POSITIVE]: 'btn-success',
+  [ControlType.NEGATIVE]: 'btn-danger',
+};
+
+const priorityClassMap = {
+  [Priority.PRIMARY]: '',
+  [Priority.SECONDARY]: '',
+  [Priority.TERTIARY]: '',
+};
+
+const oldTypePriorityMap = {
+  [Type.SECONDARY]: Priority.SCONDARY,
+  [Type.LINK]: Priority.TERTIARY,
+};
+
+const establishPriority = ({ rawPriority, rawType, type }) => {
+  // The old SECONDARY and LINK types now map to priorities. If they're still using one of
+  // these old types, ignore whatever priority they've passed and use this instead.
+  if (oldTypePriorityMap[rawType]) {
+    return oldTypePriorityMap[rawType];
+  }
+  // Only ControlType.ACCENT supports tertiary styles
+  if (rawPriority === Priority.TERTIARY && type !== ControlType.ACCENT) {
+    return Priority.SECONDARY;
+  }
+  return rawPriority;
+};
+
+const Button = (props) => {
+  const {
+    block,
+    children,
+    className,
+    disabled,
+    htmlType,
+    loading,
+    priority: rawPriority,
+    size,
+    type: rawType,
+    ...rest
+  } = props;
+
+  logActionRequired(props);
+
+  const type = deprecatedTypeMap[rawType] || rawType;
+  const priority = establishPriority({ type, rawPriority, rawType });
+
   const classes = classNames(
     `btn btn-${size}`,
     `np-btn np-btn-${size}`,
     {
       'btn-loading': loading,
-      'btn-primary': type === Type.PRIMARY,
-      'btn-success': type === Type.PAY,
-      'btn-default': type === Type.SECONDARY,
-      'btn-danger': type === Type.DANGER,
-      'btn-link': type === Type.LINK,
       'btn-block np-btn-block': block,
     },
+    typeClassMap[type],
+    priorityClassMap[priority],
     className,
   );
 
-  logActionRequiredIf(
-    'Button has deprecated the `Button.Size.EXTRA_SMALL` value for the `size` prop. Please use Button.Size.SMALL instead.',
-    size === Size.EXTRA_SMALL,
-  );
   return (
     /* eslint-disable react/button-has-type */
     <button type={htmlType} className={classes} disabled={disabled || loading} {...rest}>
@@ -47,7 +86,25 @@ const Button = ({
   );
 };
 
-Button.Type = Type;
+const deprecatedTypeMapMessage = {
+  // @TODO
+};
+
+const deprecatedTypes = Object.keys(deprecatedTypeMap);
+
+function logActionRequired({ size, type }) {
+  logActionRequiredIf(
+    'Button has deprecated the `Button.Size.EXTRA_SMALL` value for the `size` prop. Please use Button.Size.SMALL instead.',
+    size === Size.EXTRA_SMALL,
+  );
+  logActionRequiredIf(
+    `Button has deprecated the ${type} value for the \`type\` prop. Please update to ${deprecatedTypeMapMessage[type]}.`,
+    deprecatedTypes.includes(type),
+  );
+}
+
+Button.Priority = Priority;
+Button.Type = { ...Type, ...ControlType };
 Button.Size = {
   EXTRA_SMALL: Size.EXTRA_SMALL,
   SMALL: Size.SMALL,
@@ -56,38 +113,38 @@ Button.Size = {
 };
 
 Button.propTypes = {
-  className: Types.string,
-  type: Types.oneOf([
-    Button.Type.PRIMARY,
-    Button.Type.PAY,
-    Button.Type.SECONDARY,
-    Button.Type.DANGER,
-    Button.Type.LINK,
-  ]),
-  /** @DEPRECATED Button.Size.EXTRA_SMALL */
-  size: Types.oneOf([
-    Button.Size.EXTRA_SMALL,
-    Button.Size.SMALL,
-    Button.Size.MEDIUM,
-    Button.Size.LARGE,
-  ]),
-  disabled: Types.bool,
   block: Types.bool,
+  children: Types.node.isRequired,
+  className: Types.string,
+  disabled: Types.bool,
+  htmlType: Types.oneOf(['submit', 'reset', 'button']),
   loading: Types.bool,
   // eslint-disable-next-line
   onClick: requiredIf(Types.func, (props) => props.htmlType !== 'submit'),
-  children: Types.node.isRequired,
-  htmlType: Types.oneOf(['submit', 'reset', 'button']),
+  priority: Types.oneOf([Priority.PRIMARY, Priority.SECONDARY, Priority.TERTIARY]),
+  type: Types.oneOf([
+    ControlType.ACCENT,
+    ControlType.POSITIVE,
+    ControlType.NEGATIVE,
+    Type.PRIMARY,
+    Type.PAY,
+    Type.SECONDARY,
+    Type.DANGER,
+    Type.LINK,
+  ]),
+  /** @DEPRECATED Size.EXTRA_SMALL */
+  size: Types.oneOf([Size.EXTRA_SMALL, Size.SMALL, Size.MEDIUM, Size.LARGE]),
 };
 
 Button.defaultProps = {
+  block: false,
   className: null,
+  disabled: false,
+  htmlType: 'button',
+  loading: false,
+  priority: Button.Priority.PRIMARY,
   size: Button.Size.MEDIUM,
   type: Button.Type.PRIMARY,
-  disabled: false,
-  block: false,
-  loading: false,
-  htmlType: 'button',
 };
 
 export default Button;
