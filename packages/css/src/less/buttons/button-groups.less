@@ -1,31 +1,18 @@
 @import (reference) '../../variables/legacy-variables.less';
 
-@import (reference) 'bootstrap/less/mixins/border-radius.less';
-@import (reference) 'bootstrap/less/mixins/clearfix.less';
-@import (reference) 'bootstrap/less/mixins/tab-focus.less';
-
-//
-// Button groups
-// --------------------------------------------------
+@import '../mixins/_border-radius.less';
+@import '../mixins/_clearfix.less';
+@import '../mixins/_tab-focus.less';
 
 // Make the div behave like a button
 .btn-group,
 .btn-group-vertical {
   position: relative;
   display: inline-block;
-  vertical-align: middle; // match .btn alignment given font-size hack above
+  vertical-align: middle;
   > .btn {
     position: relative;
     float: left;
-    /*
-    // Bring the "active" button to the front
-    &:hover,
-    &:focus,
-    &:active,
-    &.active {
-      z-index: 2;
-    }
-    */
   }
 }
 
@@ -70,8 +57,6 @@
     width: auto;
     margin: 0 0 0 -1px;
   }
-
-  // TODO make btn-groups full width when collapsed
 
   @media (min-width: @screen-lg-min) {
     &:not(.btn-toolbar-xl) {
@@ -200,87 +185,6 @@
   border-width: 0 @caret-width-large @caret-width-large;
 }
 
-// Vertical button groups
-// ----------------------
-
-.btn-group-vertical {
-  > .btn,
-  > .btn-group,
-  > .btn-group > .btn {
-    display: block;
-    float: none;
-    width: 100%;
-    max-width: 100%;
-  }
-
-  // Clear floats so dropdown menus can be properly placed
-  > .btn-group {
-    &:extend(.clearfix all);
-    > .btn {
-      float: none;
-    }
-  }
-
-  > .btn + .btn,
-  > .btn + .btn-group,
-  > .btn-group + .btn,
-  > .btn-group + .btn-group {
-    margin-top: -1px;
-    margin-left: 0;
-  }
-}
-
-.btn-group-vertical > .btn {
-  &:not(:first-child):not(:last-child) {
-    border-radius: 0;
-  }
-  &:first-child:not(:last-child) {
-    border-top-right-radius: @border-radius-base;
-    .border-bottom-radius(0);
-  }
-  &:last-child:not(:first-child) {
-    border-bottom-left-radius: @border-radius-base;
-    .border-top-radius(0);
-  }
-}
-.btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > .btn {
-  border-radius: 0;
-}
-.btn-group-vertical > .btn-group:first-child:not(:last-child) {
-  > .btn:last-child,
-  > .dropdown-toggle {
-    .border-bottom-radius(0);
-  }
-}
-.btn-group-vertical
-  > .btn-group:last-child:not(:first-child)
-  > .btn:first-child {
-  .border-top-radius(0);
-}
-
-// Justified button groups
-// ----------------------
-
-.btn-group-justified {
-  display: table;
-  width: 100%;
-  table-layout: fixed;
-  border-collapse: separate;
-  > .btn,
-  > .btn-group {
-    float: none;
-    display: table-cell;
-    width: 1%;
-  }
-  > .btn-group .btn {
-    width: 100%;
-  }
-
-  > .btn-group .dropdown-menu {
-    left: auto;
-  }
-}
-
 // Checkbox and radio options
 //
 // In order to support the browser's form validation feedback, powered by the
@@ -304,6 +208,7 @@
     }
   }
 }
+
 .btn-group .btn {
   + .btn-success {
     border-left: 1px solid @brand-green-minus-10;

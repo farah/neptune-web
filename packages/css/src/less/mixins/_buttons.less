@@ -1,8 +1,4 @@
-// Button variants
-//
-// Easily pump out default styles, as well as :hover, :focus, :active,
-// and disabled options for all buttons
-
+// Mixins to generate button styles and state variations
 .button-variant(
     @color;
     @color-hover;
@@ -71,7 +67,6 @@
   }
 }
 
-// Button sizes
 .button-size(@padding; @font-size; @line-height; @border-radius; @min-height) {
   padding: @padding;
   font-size: @font-size;
@@ -86,7 +81,6 @@
       }
   }
 }
-
 
 .button-outline(@color, @active, @inverse) {
     .button-variant(
