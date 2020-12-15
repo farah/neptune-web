@@ -29,8 +29,9 @@ const priorityClassMap = {
 };
 
 const oldTypePriorityMap = {
-  [Type.SECONDARY]: Priority.SECONDARY,
+  [Type.DANGER]: Priority.SECONDARY,
   [Type.LINK]: Priority.TERTIARY,
+  [Type.SECONDARY]: Priority.SECONDARY,
 };
 
 const establishPriority = ({ rawPriority, rawType, type }) => {
@@ -87,7 +88,11 @@ const Button = (props) => {
 };
 
 const deprecatedTypeMapMessage = {
-  // @TODO
+  [Type.DANGER]: 'Button.Type.NEGATIVE',
+  [Type.LINK]: 'Button.Type.ACCENT with priority Button.Priority.TERTIARY',
+  [Type.PAY]: 'Button.Type.POSITIVE',
+  [Type.PRIMARY]: 'Button.Type.ACCENT',
+  [Type.SECONDARY]: 'Button.Type.ACCENT with priority Button.Priority.SECONDARY',
 };
 
 const deprecatedTypes = Object.keys(deprecatedTypeMap);
@@ -144,7 +149,7 @@ Button.defaultProps = {
   loading: false,
   priority: Button.Priority.PRIMARY,
   size: Button.Size.MEDIUM,
-  type: Button.Type.PRIMARY,
+  type: Button.Type.ACCENT,
 };
 
 export default Button;

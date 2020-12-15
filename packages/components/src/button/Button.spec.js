@@ -6,7 +6,7 @@ import Button from '.';
 describe('Button', () => {
   const props = {
     state: 'default',
-    type: 'pay',
+    type: 'positive',
     size: 'md',
     onClick: jest.fn(),
     children: 'Send money',
@@ -30,7 +30,7 @@ describe('Button', () => {
     const button = wrapper.find('button');
     expect(button.hasClass('btn')).toBe(true);
     expect(button.hasClass('btn-md')).toBe(true);
-    expect(button.hasClass('btn-success')).toBe(true);
+    expect(button.hasClass('btn-positive')).toBe(true);
   });
 
   it('has the right type when rendered', () => {
