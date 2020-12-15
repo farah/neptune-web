@@ -17,19 +17,19 @@ const deprecatedTypeMap = {
 };
 
 const typeClassMap = {
-  [ControlType.ACCENT]: 'btn-primary',
-  [ControlType.POSITIVE]: 'btn-success',
-  [ControlType.NEGATIVE]: 'btn-danger',
+  [ControlType.ACCENT]: 'btn-accent',
+  [ControlType.POSITIVE]: 'btn-positive',
+  [ControlType.NEGATIVE]: 'btn-negative',
 };
 
 const priorityClassMap = {
-  [Priority.PRIMARY]: '',
-  [Priority.SECONDARY]: '',
-  [Priority.TERTIARY]: '',
+  [Priority.PRIMARY]: 'btn-priority-1',
+  [Priority.SECONDARY]: 'btn-priority-2',
+  [Priority.TERTIARY]: 'btn-priority-3',
 };
 
 const oldTypePriorityMap = {
-  [Type.SECONDARY]: Priority.SCONDARY,
+  [Type.SECONDARY]: Priority.SECONDARY,
   [Type.LINK]: Priority.TERTIARY,
 };
 

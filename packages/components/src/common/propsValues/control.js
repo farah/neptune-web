@@ -6,7 +6,7 @@ const Type = {
 
 const Priority = {
   PRIMARY: 'primary',
-  SCONDARY: 'secondary',
+  SECONDARY: 'secondary',
   TERTIARY: 'tertiary',
 };
 

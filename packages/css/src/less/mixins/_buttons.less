@@ -8,7 +8,8 @@
     @border;
     @border-hover;
     @border-active;
-    @dropdown-background: @background) {
+    @dropdown-background: @background;
+    @color-active: @color-hover) {
 
   color: @color;
   background-color: @background;
@@ -29,14 +30,14 @@
   &:active,
   &.active,
   .open > .dropdown-toggle& {
-    color: @color-hover;
+    color: @color-active;
     background-color: @background-active;
         border-color: @border-active;
 
     &:hover,
     &:focus,
     &.focus {
-      color: @color-hover;
+      color: @color-active;
       background-color: @background-active;
           border-color: @border-active;
     }
@@ -80,20 +81,6 @@
           line-height: @line-height;
       }
   }
-}
-
-.button-outline(@color, @active, @inverse) {
-    .button-variant(
-        @color;
-        @inverse;
-        transparent;
-        @color;
-        @active;
-        @color;
-        @color;
-        @active;
-        #FFF
-    );
 }
 
 .btn-sm {

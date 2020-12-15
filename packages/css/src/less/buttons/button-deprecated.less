@@ -1,3 +1,68 @@
+@import (reference) '../../variables/legacy-variables.less';
+
+@import '../mixins/_border-radius.less';
+@import '../mixins/_buttons.less';
+
+
+.button-outline(@color, @active, @inverse) {
+    .button-variant(
+        @color;
+        @inverse;
+        transparent;
+        @color;
+        @active;
+        @color;
+        @color;
+        @active;
+        #FFF
+    );
+}
+
+
+// @DEPRECATED
+.btn-default {
+  .button-variant(
+      @btn-default-color;
+      #FFF;
+      @btn-default-bg;
+      @btn-default-bg-hover;
+      @btn-default-bg-active;
+      @btn-default-border;
+      @btn-default-border-hover;
+      @btn-default-border-active;
+      #FFF
+  );
+}
+
+// @DEPRECATED
+.btn-info {
+  .button-variant(
+      @btn-info-color;
+      #FFF;
+      @btn-info-bg;
+      @btn-info-bg-hover;
+      @btn-info-bg-active;
+      @btn-info-border;
+      @btn-info-border-hover;
+      @btn-info-border-active;
+      #FFF
+  );
+}
+
+// @DEPRECATED
+.btn-warning {
+  .button-variant(
+      @btn-warning-color;
+      #FFF;
+      @btn-warning-bg;
+      @btn-warning-bg-hover;
+      @btn-warning-bg-active;
+      @btn-warning-border;
+      @btn-warning-border-hover;
+      @btn-warning-border-active;
+      #FFF
+  );
+}
 
 .btn-facebook {
 	.button-outline (

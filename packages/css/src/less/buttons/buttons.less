@@ -55,7 +55,7 @@
   }
 }
 
-// @DEPRECATED (.btn-primary - use .btn-accent instead)
+// @DEPRECATED: .btn-primary (use .btn-accent instead)
 .btn-accent, .btn-primary {
   .button-variant(
       @color-text-control;
@@ -67,96 +67,26 @@
       @color-control-accent-hover;
       @color-control-accent-active;
   );
+
+  &.btn-priority-2 {
+    .button-variant(
+      @color-control-accent;
+      @color-control-accent-hover;
+      @color-background-screen;
+      @color-background-screen;
+      @color-background-screen;
+      @color-control-accent;
+      @color-control-accent-hover;
+      @color-control-accent-active;
+      @color-background-screen;
+      @color-control-accent-active;
+    );
+  }
 }
 
-// @DEPRECATED (.btn-success - use .btn-positive instead)
-.btn-positive, .btn-success {
-  .button-variant(
-      @color-text-control;
-      @color-text-control;
-      @color-control-positive;
-      @color-control-positive-hover;
-      @color-control-positive-active;
-      @color-control-positive;
-      @color-control-positive-hover;
-      @color-control-positive-active;
-  );
-}
-
-.btn-negative {
-  .button-variant(
-      @color-text-control;
-      @color-text-control;
-      @color-control-negative;
-      @color-control-negative-hover;
-      @color-control-negative-active;
-      @color-control-negative;
-      @color-control-negative-hover;
-      @color-control-negative-active;
-  );
-}
-
-// @DEPRECATED
-.btn-default {
-  .button-variant(
-      @btn-default-color;
-      #FFF;
-      @btn-default-bg;
-      @btn-default-bg-hover;
-      @btn-default-bg-active;
-      @btn-default-border;
-      @btn-default-border-hover;
-      @btn-default-border-active;
-      #FFF
-  );
-}
-
-// @DEPRECATED
-.btn-info {
-  .button-variant(
-      @btn-info-color;
-      #FFF;
-      @btn-info-bg;
-      @btn-info-bg-hover;
-      @btn-info-bg-active;
-      @btn-info-border;
-      @btn-info-border-hover;
-      @btn-info-border-active;
-      #FFF
-  );
-}
-
-// @DEPRECATED
-.btn-warning {
-  .button-variant(
-      @btn-warning-color;
-      #FFF;
-      @btn-warning-bg;
-      @btn-warning-bg-hover;
-      @btn-warning-bg-active;
-      @btn-warning-border;
-      @btn-warning-border-hover;
-      @btn-warning-border-active;
-      #FFF
-  );
-}
-
-// @DEPRECATED (.btn-danger - use .btn-negative instead)
-.btn-danger {
-  .button-variant(
-      @btn-danger-color;
-      #FFF;
-      @btn-danger-bg;
-      @btn-danger-bg-hover;
-      @btn-danger-bg-active;
-      @btn-danger-border;
-      @btn-danger-border-hover;
-      @btn-danger-border-active;
-      #FFF
-  );
-}
-
-.btn-link {
+// @DEPRECATED:.btn-link (use .btn-accent.btn-priority-3 instead)
+.btn-link,
+.btn-accent.btn-priority-3 {
   color: @link-color;
   text-decoration: @link-decoration;
   border-color: transparent;
@@ -173,6 +103,7 @@
   &:focus {
     color: @link-hover-color;
     text-decoration: @link-decoration;
+    border-color: transparent;
   }
   &:active {
     color: @link-active-color;
@@ -180,12 +111,83 @@
   &[disabled],
   fieldset[disabled] & {
     color: @link-disabled-color;
-    text-decoration: none;
     &:hover,
     &:focus {
       color: @link-disabled-color;
     }
   }
+}
+
+// @DEPRECATED:.btn-success (use .btn-positive instead)
+.btn-positive, .btn-success {
+  .button-variant(
+      @color-text-control;
+      @color-text-control;
+      @color-control-positive;
+      @color-control-positive-hover;
+      @color-control-positive-active;
+      @color-control-positive;
+      @color-control-positive-hover;
+      @color-control-positive-active;
+  );
+
+  &.btn-priority-2 {
+    .button-variant(
+      @color-control-positive;
+      @color-control-positive-hover;
+      @color-background-screen;
+      @color-background-screen;
+      @color-background-screen;
+      @color-control-positive;
+      @color-control-positive-hover;
+      @color-control-positive-active;
+      @color-background-screen;
+      @color-control-positive-active;
+    );
+  }
+}
+
+.btn-negative {
+  .button-variant(
+      @color-text-control;
+      @color-text-control;
+      @color-control-negative;
+      @color-control-negative-hover;
+      @color-control-negative-active;
+      @color-control-negative;
+      @color-control-negative-hover;
+      @color-control-negative-active;
+  );
+
+  &.btn-priority-2 {
+    .button-variant(
+      @color-control-negative;
+      @color-control-negative-hover;
+      @color-background-screen;
+      @color-background-screen;
+      @color-background-screen;
+      @color-control-negative;
+      @color-control-negative-hover;
+      @color-control-negative-active;
+      @color-background-screen;
+      @color-control-negative-active;
+    );
+  }
+}
+
+// @DEPRECATED: .btn-danger (use .btn-negative instead)
+.btn-danger {
+  .button-variant(
+      @btn-danger-color;
+      #FFF;
+      @btn-danger-bg;
+      @btn-danger-bg-hover;
+      @btn-danger-bg-active;
+      @btn-danger-border;
+      @btn-danger-border-hover;
+      @btn-danger-border-active;
+      #FFF
+  );
 }
 
 // Sizes
